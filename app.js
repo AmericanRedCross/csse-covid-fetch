@@ -23,7 +23,7 @@ async function dataGrab() {
       
       if (lastUploaded === myDate) {
         console.log("Looks like we've aready fetched for " + myDate);
-        i = i+j;
+        i = i+j; // don't look at any older dates, end the loop
       } else {
         await needle('get', myUrl)
           .then(function(response) {
@@ -35,7 +35,7 @@ async function dataGrab() {
               }
               fs.writeFileSync(outputFile, response.body);
               console.log("Found " + myDate + settings.app.fileExtension + " and wrote to " + outputFile);
-              i = i+j;
+              i = i+j; // don't look at any older dates, end the loop
             } else {
               console.log('statusCode:', response.statusCode);
               console.log('Did not find ' + myDate + settings.app.fileExtension);
